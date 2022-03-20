@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114D27E748A100F6F7BE /* AppDelegate.swift */; };
 		E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114F27E748A100F6F7BE /* SceneDelegate.swift */; };
-		E586115227E748A100F6F7BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586115127E748A100F6F7BE /* ViewController.swift */; };
+		E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586115127E748A100F6F7BE /* FeedViewController.swift */; };
 		E586115727E748A400F6F7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E586115627E748A400F6F7BE /* Assets.xcassets */; };
 		E586115A27E748A400F6F7BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E586115827E748A400F6F7BE /* LaunchScreen.storyboard */; };
+		E586116227E74A9800F6F7BE /* FeedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116127E74A9800F6F7BE /* FeedTabBarController.swift */; };
+		E586116427E74DF300F6F7BE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116327E74DF300F6F7BE /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E586114A27E748A100F6F7BE /* eung7 Twitter App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eung7 Twitter App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E586114D27E748A100F6F7BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E586114F27E748A100F6F7BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E586115127E748A100F6F7BE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E586115127E748A100F6F7BE /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		E586115627E748A400F6F7BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E586115927E748A400F6F7BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E586115B27E748A400F6F7BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E586116127E74A9800F6F7BE /* FeedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabBarController.swift; sourceTree = "<group>"; };
+		E586116327E74DF300F6F7BE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,9 @@
 			children = (
 				E586114D27E748A100F6F7BE /* AppDelegate.swift */,
 				E586114F27E748A100F6F7BE /* SceneDelegate.swift */,
-				E586115127E748A100F6F7BE /* ViewController.swift */,
+				E586115127E748A100F6F7BE /* FeedViewController.swift */,
+				E586116327E74DF300F6F7BE /* ProfileViewController.swift */,
+				E586116127E74A9800F6F7BE /* FeedTabBarController.swift */,
 				E586115627E748A400F6F7BE /* Assets.xcassets */,
 				E586115827E748A400F6F7BE /* LaunchScreen.storyboard */,
 				E586115B27E748A400F6F7BE /* Info.plist */,
@@ -134,7 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E586115227E748A100F6F7BE /* ViewController.swift in Sources */,
+				E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */,
+				E586116227E74A9800F6F7BE /* FeedTabBarController.swift in Sources */,
+				E586116427E74DF300F6F7BE /* ProfileViewController.swift in Sources */,
 				E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */,
 				E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */,
 			);
