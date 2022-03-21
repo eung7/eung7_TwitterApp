@@ -19,11 +19,16 @@ class FeedTableViewCell : UITableViewCell {
     let messageIcon = UIImageView(image: UIImage(systemName: "message"))
     let shareIcon = UIImageView(image: UIImage(systemName: "square.and.arrow.up"))
     
-    private func setupLayout() {
+    func setupLayout() {
         [ usernameLabel, accountLabel, contentsLabel, profileImageView, heartIcon, messageIcon, shareIcon ]
             .forEach { contentView.addSubview($0) }
         
-        
+        profileImageView.backgroundColor = .gray
+        profileImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(16)
+            $0.width.height.equalTo(50)
+        }
     }
 }
 
