@@ -12,8 +12,10 @@
 		E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586115127E748A100F6F7BE /* FeedViewController.swift */; };
 		E586115727E748A400F6F7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E586115627E748A400F6F7BE /* Assets.xcassets */; };
 		E586115A27E748A400F6F7BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E586115827E748A400F6F7BE /* LaunchScreen.storyboard */; };
-		E586116227E74A9800F6F7BE /* FeedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116127E74A9800F6F7BE /* FeedTabBarController.swift */; };
 		E586116427E74DF300F6F7BE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116327E74DF300F6F7BE /* ProfileViewController.swift */; };
+		E586116727E8804300F6F7BE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E586116627E8804300F6F7BE /* SnapKit */; };
+		E586116927E880A400F6F7BE /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116827E880A400F6F7BE /* FeedTableViewCell.swift */; };
+		E586116E27E8838F00F6F7BE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116D27E8838F00F6F7BE /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +26,9 @@
 		E586115627E748A400F6F7BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E586115927E748A400F6F7BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E586115B27E748A400F6F7BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E586116127E74A9800F6F7BE /* FeedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabBarController.swift; sourceTree = "<group>"; };
 		E586116327E74DF300F6F7BE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E586116827E880A400F6F7BE /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		E586116D27E8838F00F6F7BE /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E586116727E8804300F6F7BE /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,14 +64,31 @@
 			children = (
 				E586114D27E748A100F6F7BE /* AppDelegate.swift */,
 				E586114F27E748A100F6F7BE /* SceneDelegate.swift */,
-				E586115127E748A100F6F7BE /* FeedViewController.swift */,
-				E586116327E74DF300F6F7BE /* ProfileViewController.swift */,
-				E586116127E74A9800F6F7BE /* FeedTabBarController.swift */,
+				E586116D27E8838F00F6F7BE /* TabBarController.swift */,
+				E586116A27E880A800F6F7BE /* FeedViewController */,
+				E586116B27E880AE00F6F7BE /* ProfileViewController */,
 				E586115627E748A400F6F7BE /* Assets.xcassets */,
 				E586115827E748A400F6F7BE /* LaunchScreen.storyboard */,
 				E586115B27E748A400F6F7BE /* Info.plist */,
 			);
 			path = "eung7 Twitter App";
+			sourceTree = "<group>";
+		};
+		E586116A27E880A800F6F7BE /* FeedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E586115127E748A100F6F7BE /* FeedViewController.swift */,
+				E586116827E880A400F6F7BE /* FeedTableViewCell.swift */,
+			);
+			path = FeedViewController;
+			sourceTree = "<group>";
+		};
+		E586116B27E880AE00F6F7BE /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E586116327E74DF300F6F7BE /* ProfileViewController.swift */,
+			);
+			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +107,9 @@
 			dependencies = (
 			);
 			name = "eung7 Twitter App";
+			packageProductDependencies = (
+				E586116627E8804300F6F7BE /* SnapKit */,
+			);
 			productName = "eung7 Twitter App";
 			productReference = E586114A27E748A100F6F7BE /* eung7 Twitter App.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +138,9 @@
 				Base,
 			);
 			mainGroup = E586114127E748A100F6F7BE;
+			packageReferences = (
+				E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = E586114B27E748A100F6F7BE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,8 +167,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E586116E27E8838F00F6F7BE /* TabBarController.swift in Sources */,
 				E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */,
-				E586116227E74A9800F6F7BE /* FeedTabBarController.swift in Sources */,
+				E586116927E880A400F6F7BE /* FeedTableViewCell.swift in Sources */,
 				E586116427E74DF300F6F7BE /* ProfileViewController.swift in Sources */,
 				E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */,
 				E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */,
@@ -352,6 +380,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E586116627E8804300F6F7BE /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E586114227E748A100F6F7BE /* Project object */;
 }

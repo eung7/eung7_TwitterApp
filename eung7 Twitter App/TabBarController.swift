@@ -2,7 +2,7 @@
 //  TabBarController.swift
 //  eung7 Twitter App
 //
-//  Created by 김응철 on 2022/03/20.
+//  Created by 김응철 on 2022/03/21.
 //
 
 import UIKit
@@ -19,11 +19,13 @@ class TabBarController : UITabBarController {
         super.viewDidLoad()
         
         setup()
-        
     }
     
     func setup() {
-        self.viewControllers = [ feedViewController, profileViewContller ]
+        self.viewControllers = [
+            UINavigationController(rootViewController: feedViewController),
+            UINavigationController(rootViewController: profileViewContller)
+        ]
         
         tabBar.backgroundColor = .systemBackground
 
