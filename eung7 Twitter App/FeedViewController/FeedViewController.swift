@@ -13,6 +13,8 @@ class FeedViewController: UIViewController {
     
     let tableView = UITableView(frame: .zero)
     
+    let floaty = Floaty()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,21 +22,34 @@ class FeedViewController: UIViewController {
         setupLayout()
     }
     
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         self.navigationItem.title = "Feed"
     }
     
     
-    func setupLayout() {
+    private func setupLayout() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "FeedTableViewCell")
         tableView.rowHeight = 100
         
         view.addSubview(tableView)
-        
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        setupFloaty()
+    }
+    
+    private func setupFloaty() {
+        view.addSubview(floaty)
+        floaty.sticky = true
+        floaty.handleFirstItemDirectly = true
+        floaty.paddingY = 55
+        floaty.buttonImage = UIImage(systemName: "square.and.pencil")
+        floaty.buttonColor = .white
+        floaty.addItem(title: "") { _ in
+            print("You just did Tap!")
         }
     }
 }
