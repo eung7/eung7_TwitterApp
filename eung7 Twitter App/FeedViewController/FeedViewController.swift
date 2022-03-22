@@ -41,6 +41,10 @@ class FeedViewController: UIViewController {
         setupFloaty()
     }
     
+    private func goToWriteVC() {
+        navigationController?.pushViewController(FeedWriteViewController(), animated: true)
+    }
+    
     private func setupFloaty() {
         view.addSubview(floaty)
         floaty.sticky = true
@@ -48,8 +52,9 @@ class FeedViewController: UIViewController {
         floaty.paddingY = 55
         floaty.buttonImage = UIImage(systemName: "square.and.pencil")
         floaty.buttonColor = .white
-        floaty.addItem(title: "") { _ in
-            print("You just did Tap!")
+        floaty.addItem(title: "") { [weak self] _ in
+            guard let self = self else { return }
+            self.goToWriteVC()
         }
     }
 }

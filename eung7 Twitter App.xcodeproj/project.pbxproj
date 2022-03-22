@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		172D0D5775CB709A73BCAD01 /* Pods_eung7_Twitter_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD6C66439E1ACD0BEAE802B /* Pods_eung7_Twitter_App.framework */; };
+		E537B22C27E9787900749A05 /* FeedWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E537B22B27E9787900749A05 /* FeedWriteViewController.swift */; };
 		E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114D27E748A100F6F7BE /* AppDelegate.swift */; };
 		E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114F27E748A100F6F7BE /* SceneDelegate.swift */; };
 		E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586115127E748A100F6F7BE /* FeedViewController.swift */; };
@@ -24,6 +25,7 @@
 		2AD6C66439E1ACD0BEAE802B /* Pods_eung7_Twitter_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eung7_Twitter_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CFE2BD5F904B4121CC21EE1 /* Pods-eung7 Twitter App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eung7 Twitter App.release.xcconfig"; path = "Target Support Files/Pods-eung7 Twitter App/Pods-eung7 Twitter App.release.xcconfig"; sourceTree = "<group>"; };
 		9000A13A7F261811777E9C5D /* Pods-eung7 Twitter App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eung7 Twitter App.debug.xcconfig"; path = "Target Support Files/Pods-eung7 Twitter App/Pods-eung7 Twitter App.debug.xcconfig"; sourceTree = "<group>"; };
+		E537B22B27E9787900749A05 /* FeedWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWriteViewController.swift; sourceTree = "<group>"; };
 		E586114A27E748A100F6F7BE /* eung7 Twitter App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eung7 Twitter App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E586114D27E748A100F6F7BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E586114F27E748A100F6F7BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +58,6 @@
 				9000A13A7F261811777E9C5D /* Pods-eung7 Twitter App.debug.xcconfig */,
 				6CFE2BD5F904B4121CC21EE1 /* Pods-eung7 Twitter App.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -97,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				E586115127E748A100F6F7BE /* FeedViewController.swift */,
+				E537B22B27E9787900749A05 /* FeedWriteViewController.swift */,
 				E586116F27E95B8800F6F7BE /* FeedDetailViewController.swift */,
 				E586116827E880A400F6F7BE /* FeedTableViewCell.swift */,
 			);
@@ -169,7 +171,7 @@
 			);
 			mainGroup = E586114127E748A100F6F7BE;
 			packageReferences = (
-				E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit.git" */,
+				E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = E586114B27E748A100F6F7BE /* Products */;
 			projectDirPath = "";
@@ -245,6 +247,7 @@
 				E586116427E74DF300F6F7BE /* ProfileViewController.swift in Sources */,
 				E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */,
 				E586117027E95B8800F6F7BE /* FeedDetailViewController.swift in Sources */,
+				E537B22C27E9787900749A05 /* FeedWriteViewController.swift in Sources */,
 				E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,7 +460,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit.git" */ = {
+		E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -470,7 +473,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		E586116627E8804300F6F7BE /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit.git" */;
+			package = E586116527E8804300F6F7BE /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

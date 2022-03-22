@@ -22,7 +22,7 @@ class FeedTableViewCell : UITableViewCell {
     func setupLayout() {
         [ usernameLabel, accountLabel, contentsLabel, profileImageView, heartButton, messageButton, shareButton ]
             .forEach { contentView.addSubview($0) }
-        
+    
         profileImageView.backgroundColor = .gray
         profileImageView.layer.cornerRadius = 25
         profileImageView.snp.makeConstraints {
