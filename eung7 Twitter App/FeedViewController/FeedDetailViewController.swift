@@ -19,13 +19,17 @@ class FeedDetailViewController : UIViewController {
     
     let buttonStackView = UIStackView()
     
+    var completion : (([Feed]) -> Void)? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         setupLayout()
     }
     
     private func setupLayout() {
+        view.backgroundColor = .systemBackground
         
         [ heartButton, shareBUtton ]
             .forEach { buttonStackView.addArrangedSubview($0) }
@@ -56,7 +60,6 @@ class FeedDetailViewController : UIViewController {
             $0.leading.equalTo(usernameLabel.snp.leading)
         }
         
-        contentsLabel.text = "Hi This is Sample Contents Label made by eungcheol"
         contentsLabel.font = .systemFont(ofSize: 15, weight: .regular)
         contentsLabel.numberOfLines = 0
         contentsLabel.snp.makeConstraints {
@@ -76,3 +79,4 @@ class FeedDetailViewController : UIViewController {
         }
     }
 }
+

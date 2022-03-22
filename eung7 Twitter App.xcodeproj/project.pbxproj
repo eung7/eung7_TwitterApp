@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		172D0D5775CB709A73BCAD01 /* Pods_eung7_Twitter_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD6C66439E1ACD0BEAE802B /* Pods_eung7_Twitter_App.framework */; };
 		E537B22C27E9787900749A05 /* FeedWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E537B22B27E9787900749A05 /* FeedWriteViewController.swift */; };
+		E55D365527E97EBE00A9D2BE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55D365427E97EBE00A9D2BE /* UserInfo.swift */; };
+		E55D365727E97F1800A9D2BE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55D365627E97F1800A9D2BE /* Feed.swift */; };
 		E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114D27E748A100F6F7BE /* AppDelegate.swift */; };
 		E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114F27E748A100F6F7BE /* SceneDelegate.swift */; };
 		E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586115127E748A100F6F7BE /* FeedViewController.swift */; };
@@ -26,6 +28,8 @@
 		6CFE2BD5F904B4121CC21EE1 /* Pods-eung7 Twitter App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eung7 Twitter App.release.xcconfig"; path = "Target Support Files/Pods-eung7 Twitter App/Pods-eung7 Twitter App.release.xcconfig"; sourceTree = "<group>"; };
 		9000A13A7F261811777E9C5D /* Pods-eung7 Twitter App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eung7 Twitter App.debug.xcconfig"; path = "Target Support Files/Pods-eung7 Twitter App/Pods-eung7 Twitter App.debug.xcconfig"; sourceTree = "<group>"; };
 		E537B22B27E9787900749A05 /* FeedWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedWriteViewController.swift; sourceTree = "<group>"; };
+		E55D365427E97EBE00A9D2BE /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		E55D365627E97F1800A9D2BE /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		E586114A27E748A100F6F7BE /* eung7 Twitter App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eung7 Twitter App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E586114D27E748A100F6F7BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E586114F27E748A100F6F7BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E55D365827E97FC400A9D2BE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E55D365427E97EBE00A9D2BE /* UserInfo.swift */,
+				E55D365627E97F1800A9D2BE /* Feed.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		E586114127E748A100F6F7BE = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +98,7 @@
 				E586114D27E748A100F6F7BE /* AppDelegate.swift */,
 				E586114F27E748A100F6F7BE /* SceneDelegate.swift */,
 				E586116D27E8838F00F6F7BE /* TabBarController.swift */,
+				E55D365827E97FC400A9D2BE /* Data */,
 				E586116A27E880A800F6F7BE /* FeedViewController */,
 				E586116B27E880AE00F6F7BE /* ProfileViewController */,
 				E586115627E748A400F6F7BE /* Assets.xcassets */,
@@ -241,6 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E55D365527E97EBE00A9D2BE /* UserInfo.swift in Sources */,
+				E55D365727E97F1800A9D2BE /* Feed.swift in Sources */,
 				E586116E27E8838F00F6F7BE /* TabBarController.swift in Sources */,
 				E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */,
 				E586116927E880A400F6F7BE /* FeedTableViewCell.swift in Sources */,

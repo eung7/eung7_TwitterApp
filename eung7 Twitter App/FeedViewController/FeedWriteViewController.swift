@@ -8,31 +8,49 @@
 import UIKit
 import SnapKit
 
+protocol FeedWriteDelegate : AnyObject {
+    func sendToText(vc : UIViewController, text : String)
+}
+
 class FeedWriteViewController : UIViewController {
     
     let writeTextView = UITextView()
     
+    weak var delegate : FeedWriteDelegate?
+    
+    let cancelButton = UIBarButtonItem(
+        title: "닫기",
+        style: .done,
+        target: self,
+        action: #selector(didTapClosedButton)
+    )
+    
+    let saveButton = UIBarButtonItem(
+        title: "저장",
+        style: .done,
+        target: self,
+        action: #selector(didTapSaveButton)
+    )
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
         
         setupLayout()
         setupNavigationBar()
     }
     
-    private func setupNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "닫기",
-            style: .done,
-            target: self,
-            action: #selector(didTapClosedButton)
-        )
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "저장",
-            style: .done,
-            target: self,
-            action: #selector(didTapSaveButton)
-        )
+        writeTextView.becomeFirstResponder()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = saveButton
+        
     }
     
     @objc private func didTapClosedButton() {
@@ -40,8 +58,12 @@ class FeedWriteViewController : UIViewController {
     }
     
     @objc private func didTapSaveButton() {
-        print("iii")
+        guard let text = writeTextView.text else { return }
+        self.delegate?.sendToText(vc: self, text: text)
+        
+        navigationController?.popViewController(animated: true)
     }
+    
     
     private func setupLayout() {
         view.addSubview(writeTextView)
@@ -51,3 +73,5 @@ class FeedWriteViewController : UIViewController {
         }
     }
 }
+
+

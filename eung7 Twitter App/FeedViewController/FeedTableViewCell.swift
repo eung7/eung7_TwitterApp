@@ -32,7 +32,6 @@ class FeedTableViewCell : UITableViewCell {
         }
         
         usernameLabel.font = .systemFont(ofSize: 14, weight: .bold)
-        usernameLabel.text = "KimEungCheol"
         usernameLabel.snp.makeConstraints {
             $0.top.equalTo(profileImageView.snp.top)
             $0.leading.equalTo(profileImageView.snp.trailing).offset(16)
@@ -40,14 +39,12 @@ class FeedTableViewCell : UITableViewCell {
         
         accountLabel.font = .systemFont(ofSize: 12, weight: .light)
         accountLabel.textColor = .secondaryLabel
-        accountLabel.text = "@eung7"
         accountLabel.snp.makeConstraints {
             $0.centerY.equalTo(usernameLabel)
             $0.leading.equalTo(usernameLabel.snp.trailing).offset(4)
         }
         
         contentsLabel.font = .systemFont(ofSize: 14)
-        contentsLabel.text = "Good night !"
         contentsLabel.snp.makeConstraints {
             $0.top.equalTo(usernameLabel.snp.bottom).offset(4)
             $0.leading.equalTo(usernameLabel.snp.leading)
