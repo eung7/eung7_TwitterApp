@@ -16,6 +16,7 @@
 		E586116727E8804300F6F7BE /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E586116627E8804300F6F7BE /* SnapKit */; };
 		E586116927E880A400F6F7BE /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116827E880A400F6F7BE /* FeedTableViewCell.swift */; };
 		E586116E27E8838F00F6F7BE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116D27E8838F00F6F7BE /* TabBarController.swift */; };
+		E586117027E95B8800F6F7BE /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586116F27E95B8800F6F7BE /* FeedDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		E586116327E74DF300F6F7BE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E586116827E880A400F6F7BE /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		E586116D27E8838F00F6F7BE /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E586116F27E95B8800F6F7BE /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				E586115127E748A100F6F7BE /* FeedViewController.swift */,
+				E586116F27E95B8800F6F7BE /* FeedDetailViewController.swift */,
 				E586116827E880A400F6F7BE /* FeedTableViewCell.swift */,
 			);
 			path = FeedViewController;
@@ -172,6 +175,7 @@
 				E586116927E880A400F6F7BE /* FeedTableViewCell.swift in Sources */,
 				E586116427E74DF300F6F7BE /* ProfileViewController.swift in Sources */,
 				E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */,
+				E586117027E95B8800F6F7BE /* FeedDetailViewController.swift in Sources */,
 				E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

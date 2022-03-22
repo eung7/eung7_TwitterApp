@@ -26,6 +26,7 @@ class FeedViewController: UIViewController {
     
     func setupLayout() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "FeedTableViewCell")
         tableView.rowHeight = 100
         
@@ -37,7 +38,7 @@ class FeedViewController: UIViewController {
     }
 }
 
-extension FeedViewController : UITableViewDataSource {
+extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -49,5 +50,7 @@ extension FeedViewController : UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(FeedDetailViewController(), animated: true)
+    }
 }
