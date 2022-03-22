@@ -17,6 +17,8 @@ class FeedDetailViewController : UIViewController {
     let heartButton = UIButton()
     let shareBUtton = UIButton()
     
+    let buttonStackView = UIStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,7 +26,11 @@ class FeedDetailViewController : UIViewController {
     }
     
     private func setupLayout() {
-        [ profileImageView, usernameLabel, accountLabel, contentsLabel, heartButton, shareBUtton ]
+        
+        [ heartButton, shareBUtton ]
+            .forEach { buttonStackView.addArrangedSubview($0) }
+        
+        [ profileImageView, usernameLabel, accountLabel, contentsLabel, buttonStackView ]
             .forEach { view.addSubview($0) }
         
         profileImageView.backgroundColor = .gray
@@ -33,6 +39,40 @@ class FeedDetailViewController : UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.width.height.equalTo(50)
+        }
+        
+        usernameLabel.text = "KimEungCheol"
+        usernameLabel.font = .systemFont(ofSize: 14, weight: .bold)
+        usernameLabel.snp.makeConstraints {
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(8)
+            $0.top.equalTo(profileImageView.snp.top).offset(5)
+        }
+        
+        accountLabel.text = "@eung7"
+        accountLabel.font = .systemFont(ofSize: 12, weight: .light)
+        accountLabel.textColor = .secondaryLabel
+        accountLabel.snp.makeConstraints {
+            $0.top.equalTo(usernameLabel.snp.bottom).offset(4)
+            $0.leading.equalTo(usernameLabel.snp.leading)
+        }
+        
+        contentsLabel.text = "Hi This is Sample Contents Label made by eungcheol"
+        contentsLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        contentsLabel.numberOfLines = 0
+        contentsLabel.snp.makeConstraints {
+            $0.top.equalTo(profileImageView.snp.bottom).offset(8)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
+        }
+        
+        buttonStackView.axis = .horizontal
+        buttonStackView.distribution = .equalSpacing
+        heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        shareBUtton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        buttonStackView.snp.makeConstraints {
+            $0.top.equalTo(contentsLabel.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().inset(100)
+            $0.trailing.equalToSuperview().inset(100)
         }
     }
 }
