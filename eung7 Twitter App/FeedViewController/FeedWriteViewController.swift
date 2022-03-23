@@ -34,7 +34,7 @@ class FeedWriteViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+   
         view.backgroundColor = .systemBackground
         
         setupLayout()

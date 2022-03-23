@@ -19,11 +19,8 @@ class FeedDetailViewController : UIViewController {
     
     let buttonStackView = UIStackView()
     
-    var completion : (([Feed]) -> Void)? = nil
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         setupLayout()
     }

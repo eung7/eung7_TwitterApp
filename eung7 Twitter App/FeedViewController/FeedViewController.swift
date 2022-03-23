@@ -22,8 +22,19 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadFeed()
+        
         setupNavigationBar()
         setupLayout()
+    }
+    
+    private func loadFeed() {
+        if let savedData = UserDefaults.standard.object(forKey: "feeds") as? Data {
+            let decoder = JSONDecoder()
+            guard let feeds = try? decoder.decode([Feed].self, from: savedData) else { return }
+            
+            self.feeds = feeds
+        }
     }
     
     private func setupNavigationBar() {
@@ -92,9 +103,15 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
 
 extension FeedViewController : FeedWriteDelegate {
     func sendToText(vc: UIViewController, text: String) {
+        let encoder = JSONEncoder()
         let feed = Feed(contents: text, isHeart: false)
-        self.feeds.append(feed)
+        self.feeds.insert(feed, at: 0)
         
+        if let data = try? encoder.encode(feeds) {
+            let defaults = UserDefaults.standard
+            defaults.set(data, forKey: "feeds")
+        }
         tableView.reloadData()
     }
 }
+

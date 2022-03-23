@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Feed {
+struct Feed : Codable {
     let contents : String
     let isHeart : Bool
 }
