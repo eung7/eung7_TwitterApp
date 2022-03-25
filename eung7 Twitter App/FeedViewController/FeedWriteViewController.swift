@@ -50,7 +50,6 @@ class FeedWriteViewController : UIViewController {
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
-        
     }
     
     @objc private func didTapClosedButton() {

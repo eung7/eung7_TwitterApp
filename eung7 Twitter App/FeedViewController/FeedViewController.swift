@@ -28,6 +28,12 @@ class FeedViewController: UIViewController {
         setupLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     private func loadFeed() {
         if let savedData = UserDefaults.standard.object(forKey: "feeds") as? Data {
             let decoder = JSONDecoder()

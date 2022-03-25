@@ -10,14 +10,29 @@ import SnapKit
 
 class FeedDetailViewController : UIViewController {
     
+//    let index : Int = 0
+    
+    static let identifier = "FeedDetailViewController"
+    
     let profileImageView = UIImageView()
     let usernameLabel = UILabel()
     let accountLabel = UILabel()
     let contentsLabel = UILabel()
     let heartButton = UIButton()
     let shareBUtton = UIButton()
-    
+
     let buttonStackView = UIStackView()
+    
+    lazy var deleteButton : UIBarButtonItem = {
+        let rightBarButton = UIBarButtonItem(
+            title: "삭제",
+            style: .done,
+            target: self,
+            action: #selector(didTapDeleteButton)
+        )
+        
+        return rightBarButton
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +40,13 @@ class FeedDetailViewController : UIViewController {
         setupLayout()
     }
     
+    @objc func didTapDeleteButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func setupLayout() {
+        self.deleteButton.tintColor = .systemRed
+        self.navigationItem.rightBarButtonItem = deleteButton
         view.backgroundColor = .systemBackground
         
         [ heartButton, shareBUtton ]
