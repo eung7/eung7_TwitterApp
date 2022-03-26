@@ -15,14 +15,14 @@ class FeedViewController: UIViewController {
     
     let floaty = Floaty()
     
-    let feedWriteVC = FeedWriteViewController()
-    
     var feeds : [Feed] = []
+    var userInfo : UserInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadFeed()
+        loadUserInfo()
         
         setupNavigationBar()
         setupLayout()
@@ -31,6 +31,8 @@ class FeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        savingUserInfo()
+        
         tableView.reloadData()
     }
     
@@ -38,12 +40,29 @@ class FeedViewController: UIViewController {
         let encoder = JSONEncoder()
         if let data = try? encoder.encode(feeds) {
             let defaults = UserDefaults.standard
-            defaults.set(data, forKey: "feeds")
+            defaults.set(data, forKey: "Feeds")
+        }
+    }
+    
+    func savingUserInfo() {
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(userInfo) {
+            let defaults = UserDefaults.standard
+            defaults.set(data, forKey: "UserInfo")
+        }
+    }
+    
+    private func loadUserInfo() {
+        if let savedData = UserDefaults.standard.object(forKey: "UserInfo") as? Data {
+            let decoder = JSONDecoder()
+            guard let userInfo = try? decoder.decode(UserInfo.self, from: savedData) else { return }
+            
+            self.userInfo = userInfo
         }
     }
     
     private func loadFeed() {
-        if let savedData = UserDefaults.standard.object(forKey: "feeds") as? Data {
+        if let savedData = UserDefaults.standard.object(forKey: "Feeds") as? Data {
             let decoder = JSONDecoder()
             guard let feeds = try? decoder.decode([Feed].self, from: savedData) else { return }
             
@@ -100,8 +119,8 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         }
         cell.contentsLabel.text = feeds[indexPath.row].contents
         cell.heartButton.isSelected = feeds[indexPath.row].isHeart
-        cell.usernameLabel.text = "KimEungCheol"
-        cell.accountLabel.text = "@eung5"
+        cell.usernameLabel.text = userInfo?.username
+        cell.accountLabel.text = userInfo?.account
         cell.setupLayout()
         
         return cell

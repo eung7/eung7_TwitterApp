@@ -74,6 +74,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		E55D365C27EF5BF200A9D2BE /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				E586116D27E8838F00F6F7BE /* TabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
 		E586114127E748A100F6F7BE = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +105,8 @@
 			children = (
 				E586114D27E748A100F6F7BE /* AppDelegate.swift */,
 				E586114F27E748A100F6F7BE /* SceneDelegate.swift */,
-				E586116D27E8838F00F6F7BE /* TabBarController.swift */,
 				E55D365827E97FC400A9D2BE /* Data */,
+				E55D365C27EF5BF200A9D2BE /* TabBarController */,
 				E586116A27E880A800F6F7BE /* FeedViewController */,
 				E586116B27E880AE00F6F7BE /* ProfileViewController */,
 				E586115627E748A400F6F7BE /* Assets.xcassets */,

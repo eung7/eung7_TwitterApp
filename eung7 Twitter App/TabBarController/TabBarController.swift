@@ -18,6 +18,8 @@ class TabBarController : UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.delegate = self
+        
         setup()
     }
     
@@ -31,5 +33,14 @@ class TabBarController : UITabBarController {
 
         feedViewController.tabBarItem = feedTabBarItem
         profileViewContller.tabBarItem = profileTabBarItem
+    }
+}
+
+extension TabBarController : UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        profileViewContller.completion = { [weak self] info in
+            guard let self = self else { return }
+            self.feedViewController.userInfo = info
+        }
     }
 }

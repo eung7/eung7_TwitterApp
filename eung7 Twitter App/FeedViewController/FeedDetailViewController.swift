@@ -46,10 +46,6 @@ class FeedDetailViewController : UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func deleteFeed(completion : (Int) -> Void) {
-        completion(index)
-    }
-    
     private func setupLayout() {
         self.deleteButton.tintColor = .systemRed
         self.navigationItem.rightBarButtonItem = deleteButton

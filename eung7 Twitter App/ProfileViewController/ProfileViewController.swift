@@ -25,13 +25,12 @@ class ProfileViewController : UIViewController {
         
         setupLayout()
     }
-    
+
     @objc private func didTapSaveButton() {
         let userInfo = UserInfo(
             username: usernameTextField.text ?? "",
             account: accountTextField.text ?? ""
         )
-        
         completion?(userInfo)
     }
     
