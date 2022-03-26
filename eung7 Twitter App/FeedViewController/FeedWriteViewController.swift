@@ -63,7 +63,6 @@ class FeedWriteViewController : UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    
     private func setupLayout() {
         view.addSubview(writeTextView)
         writeTextView.font = .systemFont(ofSize: 16, weight: .bold)

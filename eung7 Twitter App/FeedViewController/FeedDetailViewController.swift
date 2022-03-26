@@ -65,14 +65,12 @@ class FeedDetailViewController : UIViewController {
             $0.width.height.equalTo(50)
         }
         
-        usernameLabel.text = "KimEungCheol"
         usernameLabel.font = .systemFont(ofSize: 14, weight: .bold)
         usernameLabel.snp.makeConstraints {
             $0.leading.equalTo(profileImageView.snp.trailing).offset(8)
             $0.top.equalTo(profileImageView.snp.top).offset(5)
         }
         
-        accountLabel.text = "@eung7"
         accountLabel.font = .systemFont(ofSize: 12, weight: .light)
         accountLabel.textColor = .secondaryLabel
         accountLabel.snp.makeConstraints {

@@ -25,12 +25,19 @@ class ProfileViewController : UIViewController {
         
         setupLayout()
     }
-
+    
     @objc private func didTapSaveButton() {
         let userInfo = UserInfo(
             username: usernameTextField.text ?? "",
             account: accountTextField.text ?? ""
         )
+        
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(userInfo) {
+            let defaults = UserDefaults.standard
+            defaults.set(data, forKey: "UserInfo")
+        }
+        
         completion?(userInfo)
     }
     
@@ -53,14 +60,14 @@ class ProfileViewController : UIViewController {
         [ usernameTextField, accountTextField, saveButton ]
             .forEach { view.addSubview($0) }
         
-        usernameTextField.text = "KimEungCheol"
+        usernameTextField.text = UserInfo.defaultData.username
         usernameTextField.font = .systemFont(ofSize: 20, weight: .bold)
         usernameTextField.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.equalToSuperview().inset(16)
         }
         
-        accountTextField.text = "eung7"
+        accountTextField.text = UserInfo.defaultData.account
         accountTextField.font = .systemFont(ofSize: 16, weight: .regular)
         accountTextField.snp.makeConstraints {
             $0.top.equalTo(usernameTextField.snp.bottom).offset(8)

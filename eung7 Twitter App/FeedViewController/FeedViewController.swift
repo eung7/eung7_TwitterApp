@@ -33,6 +33,8 @@ class FeedViewController: UIViewController {
         
         savingUserInfo()
         
+        print(UserInfo.defaultData)
+        
         tableView.reloadData()
     }
     
@@ -131,6 +133,8 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         
         let vc = FeedDetailViewController()
         vc.contentsLabel.text = feeds[index].contents
+        vc.accountLabel.text = userInfo?.account
+        vc.usernameLabel.text = userInfo?.username
         vc.index = index
         
         vc.completion = { [weak self] index in
