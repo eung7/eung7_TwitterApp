@@ -20,8 +20,29 @@ class FeedTableViewCell : UITableViewCell {
     let shareButton = UIButton()
     
     func setupLayout() {
-        [ usernameLabel, accountLabel, contentsLabel, profileImageView, heartButton, messageButton, shareButton ]
+        [ heartButton, messageButton, shareButton, usernameLabel, accountLabel, contentsLabel, profileImageView ]
             .forEach { contentView.addSubview($0) }
+        
+        messageButton.setImage(UIImage(systemName: "message"), for: .normal)
+        messageButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(16)
+            $0.width.height.equalTo(20)
+        }
+
+        heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        heartButton.snp.makeConstraints {
+            $0.leading.equalTo(usernameLabel.snp.leading).offset(15)
+            $0.bottom.equalToSuperview().inset(16)
+            $0.width.height.equalTo(20)
+        }
+
+        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        shareButton.snp.makeConstraints {
+            $0.leading.equalTo(messageButton.snp.trailing).offset(60)
+            $0.bottom.equalToSuperview().inset(16)
+            $0.width.height.equalTo(20)
+        }
     
         profileImageView.backgroundColor = .gray
         profileImageView.layer.cornerRadius = 25
@@ -50,25 +71,5 @@ class FeedTableViewCell : UITableViewCell {
             $0.leading.equalTo(usernameLabel.snp.leading)
         }
 
-        messageButton.setImage(UIImage(systemName: "message"), for: .normal)
-        messageButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().inset(16)
-            $0.width.height.equalTo(20)
-        }
-
-        heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        heartButton.snp.makeConstraints {
-            $0.leading.equalTo(usernameLabel.snp.leading).offset(15)
-            $0.bottom.equalToSuperview().inset(16)
-            $0.width.height.equalTo(20)
-        }
-
-        shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-        shareButton.snp.makeConstraints {
-            $0.leading.equalTo(messageButton.snp.trailing).offset(60)
-            $0.bottom.equalToSuperview().inset(16)
-            $0.width.height.equalTo(20)
-        }
     }
 }

@@ -14,18 +14,43 @@ class ProfileViewController : UIViewController {
     let accountTextField = UITextField()
     let saveButton = UIButton()
     
+    var completion : ((UserInfo) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar()
+        usernameTextField.addTarget(self, action: #selector(didChangedTextField(_:)), for: .editingChanged)
+        accountTextField.addTarget(self, action: #selector(didChangedTextField(_:)), for: .editingChanged)
+        saveButton.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
+        
         setupLayout()
     }
     
-    private func setupNavigationBar() {
-        navigationItem.title = "Profile"
+    @objc private func didTapSaveButton() {
+        let userInfo = UserInfo(
+            username: usernameTextField.text ?? "",
+            account: accountTextField.text ?? ""
+        )
+        
+        completion?(userInfo)
+    }
+    
+    @objc private func didChangedTextField(_ textField : UITextField) {
+        if usernameTextField.text?.isEmpty == true ||
+            accountTextField.text?.isEmpty == true {
+            saveButton.isEnabled = false
+            saveButton.setTitle("빈칸을 입력해주세요.", for: .disabled)
+            saveButton.backgroundColor = .systemGray
+        } else {
+            saveButton.isEnabled = true
+            saveButton.setTitle("저장하기", for: .normal)
+            saveButton.backgroundColor = .systemPink
+        }
     }
     
     private func setupLayout() {
+        navigationItem.title = "Profile"
+        
         [ usernameTextField, accountTextField, saveButton ]
             .forEach { view.addSubview($0) }
         
@@ -44,9 +69,9 @@ class ProfileViewController : UIViewController {
         }
         
         saveButton.setTitle("저장하기", for: .normal)
+        saveButton.backgroundColor = .systemPink
         saveButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
         saveButton.layer.cornerRadius = 10
-        saveButton.backgroundColor = .systemBlue
         saveButton.snp.makeConstraints {
             $0.top.equalTo(accountTextField.snp.bottom).offset(16)
             $0.leading.equalToSuperview().inset(16)
@@ -54,4 +79,3 @@ class ProfileViewController : UIViewController {
         }
     }
 }
-

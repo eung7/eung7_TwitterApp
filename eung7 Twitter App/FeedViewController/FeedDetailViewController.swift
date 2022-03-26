@@ -47,8 +47,6 @@ class FeedDetailViewController : UIViewController {
     }
     
     func deleteFeed(completion : (Int) -> Void) {
-        
-        
         completion(index)
     }
     

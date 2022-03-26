@@ -34,6 +34,14 @@ class FeedViewController: UIViewController {
         tableView.reloadData()
     }
     
+    private func savingFeeds() {
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(feeds) {
+            let defaults = UserDefaults.standard
+            defaults.set(data, forKey: "feeds")
+        }
+    }
+    
     private func loadFeed() {
         if let savedData = UserDefaults.standard.object(forKey: "feeds") as? Data {
             let decoder = JSONDecoder()
@@ -76,7 +84,6 @@ class FeedViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
 }
 
 extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
@@ -107,9 +114,11 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         vc.contentsLabel.text = feeds[index].contents
         vc.index = index
         
-        vc.completion = { index in
+        vc.completion = { [weak self] index in
+            guard let self = self else { return }
             self.feeds.remove(at: index)
             
+            self.savingFeeds()
             tableView.reloadData()
         }
         
@@ -119,14 +128,10 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
 
 extension FeedViewController : FeedWriteDelegate {
     func sendToText(vc: UIViewController, text: String) {
-        let encoder = JSONEncoder()
         let feed = Feed(contents: text, isHeart: false)
         self.feeds.insert(feed, at: 0)
         
-        if let data = try? encoder.encode(feeds) {
-            let defaults = UserDefaults.standard
-            defaults.set(data, forKey: "feeds")
-        }
+        self.savingFeeds()
         tableView.reloadData()
     }
 }
