@@ -72,10 +72,11 @@ class FeedViewController: UIViewController {
             guard let self = self else { return }
             let vc = FeedWriteViewController()
             vc.delegate = self
-            
+     
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
 }
 
 extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
@@ -100,8 +101,17 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = indexPath.row
+        
         let vc = FeedDetailViewController()
-        vc.contentsLabel.text = feeds[indexPath.row].contents
+        vc.contentsLabel.text = feeds[index].contents
+        vc.index = index
+        
+        vc.completion = { index in
+            self.feeds.remove(at: index)
+            
+            tableView.reloadData()
+        }
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

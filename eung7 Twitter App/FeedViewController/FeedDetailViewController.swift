@@ -10,9 +10,9 @@ import SnapKit
 
 class FeedDetailViewController : UIViewController {
     
-//    let index : Int = 0
+    var index : Int = 0
     
-    static let identifier = "FeedDetailViewController"
+    var completion : ((Int) -> Void)?
     
     let profileImageView = UIImageView()
     let usernameLabel = UILabel()
@@ -41,7 +41,15 @@ class FeedDetailViewController : UIViewController {
     }
     
     @objc func didTapDeleteButton() {
+        completion?(index)
+        
         navigationController?.popViewController(animated: true)
+    }
+    
+    func deleteFeed(completion : (Int) -> Void) {
+        
+        
+        completion(index)
     }
     
     private func setupLayout() {
