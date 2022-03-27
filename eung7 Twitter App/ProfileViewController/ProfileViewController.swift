@@ -29,12 +29,6 @@ class ProfileViewController : UIViewController {
         setupLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print(UserInfo.currentUserInfo)
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -59,7 +53,7 @@ class ProfileViewController : UIViewController {
         } else {
             saveButton.isEnabled = true
             saveButton.setTitle("저장하기", for: .normal)
-            saveButton.backgroundColor = .systemPink
+            saveButton.backgroundColor = .systemMint
         }
     }
     
@@ -85,7 +79,7 @@ class ProfileViewController : UIViewController {
         }
         
         saveButton.setTitle("저장하기", for: .normal)
-        saveButton.backgroundColor = .systemPink
+        saveButton.backgroundColor = .systemMint
         saveButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
         saveButton.layer.cornerRadius = 10
         saveButton.snp.makeConstraints {

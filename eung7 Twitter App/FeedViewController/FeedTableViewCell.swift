@@ -78,8 +78,8 @@ class FeedTableViewCell : UITableViewCell {
             $0.leading.equalTo(usernameLabel.snp.trailing).offset(4)
         }
         
-        contentsLabel.font = .systemFont(ofSize: 14)
-        contentsLabel.numberOfLines = 1
+        contentsLabel.font = .systemFont(ofSize: 15)
+        contentsLabel.numberOfLines = 2
         contentsLabel.snp.makeConstraints {
             $0.top.equalTo(usernameLabel.snp.bottom).offset(4)
             $0.leading.equalTo(usernameLabel.snp.leading)

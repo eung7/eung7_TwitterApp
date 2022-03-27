@@ -36,12 +36,12 @@ class FeedViewController: UIViewController {
         let encoder = JSONEncoder()
         if let data = try? encoder.encode(feeds) {
             let defaults = UserDefaults.standard
-            defaults.set(data, forKey: "Feed")
+            defaults.set(data, forKey: "Feeds")
         }
     }
     
     private func loadFeed() {
-        if let savedData = UserDefaults.standard.object(forKey: "Feed") as? Data {
+        if let savedData = UserDefaults.standard.object(forKey: "Feeds") as? Data {
             let decoder = JSONDecoder()
             guard let feeds = try? decoder.decode([Feed].self, from: savedData) else { return }
             
@@ -87,7 +87,7 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feeds.count
+        return Feed.currentFeeds.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,8 +97,8 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
                 as? FeedTableViewCell else {
             return UITableViewCell()
         }
-        cell.contentsLabel.text = feeds[indexPath.row].contents
-        cell.heartButton.isSelected = feeds[indexPath.row].isHeart
+        cell.contentsLabel.text = Feed.currentFeeds[indexPath.row].contents
+        cell.heartButton.isSelected = Feed.currentFeeds[indexPath.row].isHeart
         cell.usernameLabel.text = UserInfo.currentUserInfo.username
         cell.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
         cell.setupLayout()
@@ -110,16 +110,16 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         let index = indexPath.row
         
         let vc = FeedDetailViewController()
-        vc.contentsLabel.text = feeds[index].contents
+        vc.contentsLabel.text = Feed.currentFeeds[index].contents
         vc.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
         vc.usernameLabel.text = UserInfo.currentUserInfo.username
         vc.index = index
         
         vc.completion = { [weak self] index in
             guard let self = self else { return }
-            self.feeds.remove(at: index)
+            Feed.currentFeeds.remove(at: index)
             
-            self.savingFeeds()
+//            self.savingFeeds()
             tableView.reloadData()
         }
         
@@ -130,9 +130,11 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
 extension FeedViewController : FeedWriteDelegate {
     func sendToText(vc: UIViewController, text: String) {
         let feed = Feed(contents: text, isHeart: false)
-        self.feeds.insert(feed, at: 0)
         
-        self.savingFeeds()
+        Feed.currentFeeds.insert(feed, at: 0)
+//        self.feeds.insert(feed, at: 0)
+        
+//        self.savingFeeds()
         tableView.reloadData()
     }
 }
