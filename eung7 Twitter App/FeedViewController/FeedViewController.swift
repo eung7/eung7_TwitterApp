@@ -16,13 +16,11 @@ class FeedViewController: UIViewController {
     let floaty = Floaty(size: 50.0)
     
     var feeds : [Feed] = []
-    var userInfo : UserInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadFeed()
-        loadUserInfo()
         
         setupNavigationBar()
         setupLayout()
@@ -30,8 +28,6 @@ class FeedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        savingUserInfo()
         
         tableView.reloadData()
     }
@@ -41,23 +37,6 @@ class FeedViewController: UIViewController {
         if let data = try? encoder.encode(feeds) {
             let defaults = UserDefaults.standard
             defaults.set(data, forKey: "Feed")
-        }
-    }
-    
-    func savingUserInfo() {
-        let encoder = JSONEncoder()
-        if let data = try? encoder.encode(userInfo) {
-            let defaults = UserDefaults.standard
-            defaults.set(data, forKey: "UserInfo")
-        }
-    }
-    
-    private func loadUserInfo() {
-        if let savedData = UserDefaults.standard.object(forKey: "UserInfo") as? Data {
-            let decoder = JSONDecoder()
-            guard let userInfo = try? decoder.decode(UserInfo.self, from: savedData) else { return }
-            
-            self.userInfo = userInfo
         }
     }
     

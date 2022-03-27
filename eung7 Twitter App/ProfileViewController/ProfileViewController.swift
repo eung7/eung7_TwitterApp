@@ -29,6 +29,12 @@ class ProfileViewController : UIViewController {
         setupLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print(UserInfo.currentUserInfo)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -39,11 +45,7 @@ class ProfileViewController : UIViewController {
             account: accountTextField.text ?? ""
         )
         
-        let encoder = JSONEncoder()
-        if let data = try? encoder.encode(userInfo) {
-            let defaults = UserDefaults.standard
-            defaults.set(data, forKey: "UserInfo")
-        }
+        UserInfo.currentUserInfo = userInfo
         
         completion?(userInfo)
     }
