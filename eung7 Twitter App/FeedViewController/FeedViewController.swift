@@ -13,7 +13,7 @@ class FeedViewController: UIViewController {
     
     let tableView = UITableView(frame: .zero)
     
-    let floaty = Floaty()
+    let floaty = Floaty(size: 50.0)
     
     var feeds : [Feed] = []
     var userInfo : UserInfo?
@@ -40,7 +40,7 @@ class FeedViewController: UIViewController {
         let encoder = JSONEncoder()
         if let data = try? encoder.encode(feeds) {
             let defaults = UserDefaults.standard
-            defaults.set(data, forKey: "Feeds")
+            defaults.set(data, forKey: "Feed")
         }
     }
     
@@ -62,7 +62,7 @@ class FeedViewController: UIViewController {
     }
     
     private func loadFeed() {
-        if let savedData = UserDefaults.standard.object(forKey: "Feeds") as? Data {
+        if let savedData = UserDefaults.standard.object(forKey: "Feed") as? Data {
             let decoder = JSONDecoder()
             guard let feeds = try? decoder.decode([Feed].self, from: savedData) else { return }
             
@@ -90,11 +90,12 @@ class FeedViewController: UIViewController {
     
     private func setupFloaty() {
         view.addSubview(floaty)
+        floaty.paddingY = 100.0
         floaty.sticky = true
         floaty.handleFirstItemDirectly = true
-        floaty.paddingY = 55
         floaty.buttonImage = UIImage(systemName: "square.and.pencil")
-        floaty.buttonColor = .white
+        floaty.buttonColor = .systemMint
+        floaty.plusColor = .systemBackground
         floaty.addItem(title: "") { [weak self] _ in
             guard let self = self else { return }
             let vc = FeedWriteViewController()
@@ -119,8 +120,8 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         }
         cell.contentsLabel.text = feeds[indexPath.row].contents
         cell.heartButton.isSelected = feeds[indexPath.row].isHeart
-        cell.usernameLabel.text = userInfo?.username
-        cell.accountLabel.text = "@\(UserInfo.defaultData.account)"
+        cell.usernameLabel.text = UserInfo.currentUserInfo.username
+        cell.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
         cell.setupLayout()
         
         return cell
@@ -131,8 +132,8 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         
         let vc = FeedDetailViewController()
         vc.contentsLabel.text = feeds[index].contents
-        vc.accountLabel.text = "@\(UserInfo.defaultData.account)"
-        vc.usernameLabel.text = userInfo?.username
+        vc.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
+        vc.usernameLabel.text = UserInfo.currentUserInfo.username
         vc.index = index
         
         vc.completion = { [weak self] index in

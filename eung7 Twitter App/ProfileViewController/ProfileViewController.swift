@@ -67,7 +67,7 @@ class ProfileViewController : UIViewController {
         [ usernameTextField, accountTextField, saveButton ]
             .forEach { view.addSubview($0) }
         
-        usernameTextField.text = UserInfo.defaultData.username
+        usernameTextField.text = UserInfo.currentUserInfo.username
         usernameTextField.font = .systemFont(ofSize: 20, weight: .bold)
         usernameTextField.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -75,7 +75,7 @@ class ProfileViewController : UIViewController {
             $0.trailing.equalToSuperview().inset(16)
         }
         
-        accountTextField.text = UserInfo.defaultData.account
+        accountTextField.text = UserInfo.currentUserInfo.account
         accountTextField.font = .systemFont(ofSize: 16, weight: .regular)
         accountTextField.snp.makeConstraints {
             $0.top.equalTo(usernameTextField.snp.bottom).offset(8)

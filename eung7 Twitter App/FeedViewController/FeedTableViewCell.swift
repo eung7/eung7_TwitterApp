@@ -20,7 +20,12 @@ class FeedTableViewCell : UITableViewCell {
     let shareButton = UIButton()
     
     @objc func didTapHeartButton() {
-        
+        if heartButton.isSelected == false {
+            heartButton.isSelected = true
+            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        } else {
+            heartButton.isSelected = false
+        }
     }
     
     func setupLayout() {
@@ -28,6 +33,7 @@ class FeedTableViewCell : UITableViewCell {
             .forEach { contentView.addSubview($0) }
         
         messageButton.setImage(UIImage(systemName: "message"), for: .normal)
+        messageButton.tintColor = .systemMint
         messageButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().inset(16)
@@ -36,6 +42,7 @@ class FeedTableViewCell : UITableViewCell {
 
         heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
         heartButton.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
+        heartButton.tintColor = .systemMint
         heartButton.snp.makeConstraints {
             $0.leading.equalTo(usernameLabel.snp.leading).offset(15)
             $0.bottom.equalToSuperview().inset(16)
@@ -43,6 +50,7 @@ class FeedTableViewCell : UITableViewCell {
         }
 
         shareButton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        shareButton.tintColor = .systemMint
         shareButton.snp.makeConstraints {
             $0.leading.equalTo(messageButton.snp.trailing).offset(60)
             $0.bottom.equalToSuperview().inset(16)
