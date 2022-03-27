@@ -10,6 +10,8 @@ import SnapKit
 
 class FeedTableViewCell : UITableViewCell {
     
+    var index : Int = 0
+    
     let usernameLabel = UILabel()
     let accountLabel = UILabel()
     let contentsLabel = UILabel()
@@ -19,12 +21,13 @@ class FeedTableViewCell : UITableViewCell {
     let messageButton = UIButton()
     let shareButton = UIButton()
     
-    @objc func didTapHeartButton() {
-        if heartButton.isSelected == false {
-            heartButton.isSelected = true
-            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        } else {
+    @objc private func didTapHeartButton() {
+        if heartButton.isSelected {
             heartButton.isSelected = false
+            Feed.currentFeeds[index].isHeart = false
+        } else {
+            heartButton.isSelected = true
+            Feed.currentFeeds[index].isHeart = true
         }
     }
     
@@ -39,9 +42,10 @@ class FeedTableViewCell : UITableViewCell {
             $0.bottom.equalToSuperview().inset(16)
             $0.width.height.equalTo(20)
         }
-
-        heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        
         heartButton.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
+        heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        heartButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
         heartButton.tintColor = .systemMint
         heartButton.snp.makeConstraints {
             $0.leading.equalTo(usernameLabel.snp.leading).offset(15)

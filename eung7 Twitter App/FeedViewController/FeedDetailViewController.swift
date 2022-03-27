@@ -86,6 +86,8 @@ class FeedDetailViewController : UIViewController {
             $0.trailing.equalToSuperview().inset(16)
         }
         
+        heartButton.tintColor = .systemMint
+        shareBUtton.tintColor = .systemMint
         buttonStackView.axis = .horizontal
         buttonStackView.distribution = .equalSpacing
         heartButton.setImage(UIImage(systemName: "heart"), for: .normal)

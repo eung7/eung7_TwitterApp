@@ -70,16 +70,20 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let index = indexPath.row
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "FeedTableViewCell",
             for: indexPath)
                 as? FeedTableViewCell else {
             return UITableViewCell()
         }
-        cell.contentsLabel.text = Feed.currentFeeds[indexPath.row].contents
-        cell.heartButton.isSelected = Feed.currentFeeds[indexPath.row].isHeart
+        cell.contentsLabel.text = Feed.currentFeeds[index].contents
+        cell.heartButton.isSelected = Feed.currentFeeds[index].isHeart
         cell.usernameLabel.text = UserInfo.currentUserInfo.username
         cell.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
+        
+        cell.index = index
+        
         cell.setupLayout()
         
         return cell
@@ -98,10 +102,8 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
             guard let self = self else { return }
             Feed.currentFeeds.remove(at: index)
             
-//            self.savingFeeds()
             tableView.reloadData()
         }
-        
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -109,12 +111,8 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
 extension FeedViewController : FeedWriteDelegate {
     func sendToText(vc: UIViewController, text: String) {
         let feed = Feed(contents: text, isHeart: false)
-        
         Feed.currentFeeds.insert(feed, at: 0)
-//        self.feeds.insert(feed, at: 0)
         
-//        self.savingFeeds()
         tableView.reloadData()
     }
 }
-

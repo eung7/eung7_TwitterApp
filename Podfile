@@ -6,7 +6,6 @@ target 'eung7 Twitter App' do
   use_frameworks!
   pod 'Floaty', '~> 4.2.0'
 
-
   # Pods for eung7 Twitter App
 
 end

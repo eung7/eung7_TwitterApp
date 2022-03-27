@@ -9,7 +9,7 @@ import Foundation
 
 struct Feed : Codable {
     let contents : String
-    let isHeart : Bool
+    var isHeart : Bool
     
     static var currentFeeds : [Feed] {
         get {
