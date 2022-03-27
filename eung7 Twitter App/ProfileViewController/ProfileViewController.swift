@@ -29,6 +29,10 @@ class ProfileViewController : UIViewController {
         setupLayout()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc private func didTapSaveButton() {
         let userInfo = UserInfo(
             username: usernameTextField.text ?? "",

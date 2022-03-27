@@ -19,6 +19,10 @@ class FeedTableViewCell : UITableViewCell {
     let messageButton = UIButton()
     let shareButton = UIButton()
     
+    @objc func didTapHeartButton() {
+        
+    }
+    
     func setupLayout() {
         [ heartButton, messageButton, shareButton, usernameLabel, accountLabel, contentsLabel, profileImageView ]
             .forEach { contentView.addSubview($0) }
@@ -31,6 +35,7 @@ class FeedTableViewCell : UITableViewCell {
         }
 
         heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        heartButton.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         heartButton.snp.makeConstraints {
             $0.leading.equalTo(usernameLabel.snp.leading).offset(15)
             $0.bottom.equalToSuperview().inset(16)
