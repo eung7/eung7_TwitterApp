@@ -66,9 +66,11 @@ class FeedTableViewCell : UITableViewCell {
         }
         
         contentsLabel.font = .systemFont(ofSize: 14)
+        contentsLabel.numberOfLines = 1
         contentsLabel.snp.makeConstraints {
             $0.top.equalTo(usernameLabel.snp.bottom).offset(4)
             $0.leading.equalTo(usernameLabel.snp.leading)
+            $0.trailing.equalToSuperview().inset(16)
         }
 
     }

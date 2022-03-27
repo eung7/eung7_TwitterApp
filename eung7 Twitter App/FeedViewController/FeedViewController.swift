@@ -33,8 +33,6 @@ class FeedViewController: UIViewController {
         
         savingUserInfo()
         
-        print(UserInfo.defaultData)
-        
         tableView.reloadData()
     }
     
@@ -122,7 +120,7 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         cell.contentsLabel.text = feeds[indexPath.row].contents
         cell.heartButton.isSelected = feeds[indexPath.row].isHeart
         cell.usernameLabel.text = userInfo?.username
-        cell.accountLabel.text = userInfo?.account
+        cell.accountLabel.text = "@\(UserInfo.defaultData.account)"
         cell.setupLayout()
         
         return cell
@@ -133,7 +131,7 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         
         let vc = FeedDetailViewController()
         vc.contentsLabel.text = feeds[index].contents
-        vc.accountLabel.text = userInfo?.account
+        vc.accountLabel.text = "@\(UserInfo.defaultData.account)"
         vc.usernameLabel.text = userInfo?.username
         vc.index = index
         

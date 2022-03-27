@@ -19,6 +19,9 @@ class ProfileViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        usernameTextField.delegate = self
+        accountTextField.delegate = self
+        
         usernameTextField.addTarget(self, action: #selector(didChangedTextField(_:)), for: .editingChanged)
         accountTextField.addTarget(self, action: #selector(didChangedTextField(_:)), for: .editingChanged)
         saveButton.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
@@ -65,6 +68,7 @@ class ProfileViewController : UIViewController {
         usernameTextField.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
         }
         
         accountTextField.text = UserInfo.defaultData.account
@@ -83,5 +87,15 @@ class ProfileViewController : UIViewController {
             $0.leading.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().inset(16)
         }
+    }
+}
+
+extension ProfileViewController : UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return false }
+
+        guard text.count <= 12 else { return false }
+
+        return true
     }
 }
