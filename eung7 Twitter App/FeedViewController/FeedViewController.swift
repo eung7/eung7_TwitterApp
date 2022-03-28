@@ -106,6 +106,13 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            Feed.currentFeeds.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
 extension FeedViewController : FeedWriteDelegate {
