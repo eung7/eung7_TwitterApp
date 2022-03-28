@@ -54,6 +54,11 @@ class FeedDetailViewController : UIViewController {
         [ heartButton, shareBUtton ]
             .forEach { buttonStackView.addArrangedSubview($0) }
         
+        heartButton.tintColor = .systemMint
+        heartButton.isSelected = Feed.currentFeeds[index].isHeart
+        
+        shareBUtton.tintColor = .systemMint
+        
         [ profileImageView, usernameLabel, accountLabel, contentsLabel, buttonStackView ]
             .forEach { view.addSubview($0) }
         
@@ -86,11 +91,10 @@ class FeedDetailViewController : UIViewController {
             $0.trailing.equalToSuperview().inset(16)
         }
         
-        heartButton.tintColor = .systemMint
-        shareBUtton.tintColor = .systemMint
         buttonStackView.axis = .horizontal
         buttonStackView.distribution = .equalSpacing
         heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        heartButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
         shareBUtton.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         buttonStackView.snp.makeConstraints {
             $0.top.equalTo(contentsLabel.snp.bottom).offset(16)
@@ -99,4 +103,3 @@ class FeedDetailViewController : UIViewController {
         }
     }
 }
-
