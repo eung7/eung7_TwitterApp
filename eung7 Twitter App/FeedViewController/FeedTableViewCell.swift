@@ -63,6 +63,7 @@ class FeedTableViewCell : UITableViewCell {
     
         profileImageView.backgroundColor = .gray
         profileImageView.layer.cornerRadius = 25
+        profileImageView.layer.masksToBounds = true
         profileImageView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(16)
             $0.leading.equalToSuperview().inset(16)

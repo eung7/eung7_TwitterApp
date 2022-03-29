@@ -12,6 +12,8 @@
 		E55D365527E97EBE00A9D2BE /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55D365427E97EBE00A9D2BE /* UserInfo.swift */; };
 		E55D365727E97F1800A9D2BE /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55D365627E97F1800A9D2BE /* Feed.swift */; };
 		E55D365E27F32D2000A9D2BE /* EditorMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55D365D27F32D2000A9D2BE /* EditorMode.swift */; };
+		E55D366027F3C95A00A9D2BE /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55D365F27F3C95A00A9D2BE /* UIImage+.swift */; };
+		E55D366227F3C98C00A9D2BE /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55D366127F3C98C00A9D2BE /* String+.swift */; };
 		E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114D27E748A100F6F7BE /* AppDelegate.swift */; };
 		E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586114F27E748A100F6F7BE /* SceneDelegate.swift */; };
 		E586115227E748A100F6F7BE /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E586115127E748A100F6F7BE /* FeedViewController.swift */; };
@@ -32,6 +34,8 @@
 		E55D365427E97EBE00A9D2BE /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		E55D365627E97F1800A9D2BE /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		E55D365D27F32D2000A9D2BE /* EditorMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorMode.swift; sourceTree = "<group>"; };
+		E55D365F27F3C95A00A9D2BE /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		E55D366127F3C98C00A9D2BE /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		E586114A27E748A100F6F7BE /* eung7 Twitter App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eung7 Twitter App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E586114D27E748A100F6F7BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E586114F27E748A100F6F7BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 			children = (
 				E586114D27E748A100F6F7BE /* AppDelegate.swift */,
 				E586114F27E748A100F6F7BE /* SceneDelegate.swift */,
+				E55D365F27F3C95A00A9D2BE /* UIImage+.swift */,
+				E55D366127F3C98C00A9D2BE /* String+.swift */,
 				E55D365827E97FC400A9D2BE /* Data */,
 				E55D365C27EF5BF200A9D2BE /* TabBarController */,
 				E586116A27E880A800F6F7BE /* FeedViewController */,
@@ -275,6 +281,8 @@
 				E586114E27E748A100F6F7BE /* AppDelegate.swift in Sources */,
 				E586117027E95B8800F6F7BE /* FeedDetailViewController.swift in Sources */,
 				E537B22C27E9787900749A05 /* FeedWriteViewController.swift in Sources */,
+				E55D366027F3C95A00A9D2BE /* UIImage+.swift in Sources */,
+				E55D366227F3C98C00A9D2BE /* String+.swift in Sources */,
 				E586115027E748A100F6F7BE /* SceneDelegate.swift in Sources */,
 				E55D365E27F32D2000A9D2BE /* EditorMode.swift in Sources */,
 			);

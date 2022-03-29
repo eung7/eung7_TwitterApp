@@ -94,6 +94,8 @@ class FeedDetailViewController : UIViewController {
         
         profileImageView.backgroundColor = .gray
         profileImageView.layer.cornerRadius = 25
+        profileImageView.layer.masksToBounds = true
+        profileImageView.image = UserInfo.currentUserInfo.profileImage.toImage()
         profileImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(16)

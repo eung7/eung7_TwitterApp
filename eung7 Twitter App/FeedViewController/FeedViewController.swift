@@ -20,6 +20,7 @@ class FeedViewController: UIViewController {
         
         setupNavigationBar()
         setupLayout()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +82,7 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         cell.heartButton.isSelected = Feed.currentFeeds[index].isHeart
         cell.usernameLabel.text = UserInfo.currentUserInfo.username
         cell.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
+        cell.profileImageView.image = UserInfo.currentUserInfo.profileImage.toImage()
         
         cell.index = index
         

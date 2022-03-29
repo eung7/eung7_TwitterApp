@@ -13,7 +13,7 @@ class ProfileViewController : UIViewController {
     
     let usernameTextField = UITextField()
     let accountTextField = UITextField()
-    let profileImage = UIImageView()
+    var profileImage = UIImageView()
     let saveButton = UIButton()
     
     var completion : ((UserInfo) -> Void)?
@@ -51,12 +51,10 @@ class ProfileViewController : UIViewController {
     @objc private func didTapSaveButton() {
         let userInfo = UserInfo(
             username: usernameTextField.text ?? "",
-            account: accountTextField.text ?? ""
+            account: accountTextField.text ?? "",
+            profileImage: profileImage.image?.toPngString() ?? ""
         )
-        
         UserInfo.currentUserInfo = userInfo
-        
-        completion?(userInfo)
     }
     
     @objc private func didChangedTextField(_ textField : UITextField) {
@@ -82,8 +80,10 @@ class ProfileViewController : UIViewController {
         
         profileImage.backgroundColor = .gray
         profileImage.layer.cornerRadius = 25
+        profileImage.layer.masksToBounds = true
         profileImage.addGestureRecognizer(tapProfileImageView)
         profileImage.isUserInteractionEnabled = true
+        profileImage.image = UserInfo.currentUserInfo.profileImage.toImage()
         profileImage.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -133,5 +133,19 @@ extension ProfileViewController : UITextFieldDelegate {
 extension ProfileViewController : PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
+        
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard let self = self else { return }
+                guard let image = image as? UIImage else { return }
+                DispatchQueue.main.async {
+                    self.profileImage.image = image
+                }
+            }
+        }
     }
 }
+

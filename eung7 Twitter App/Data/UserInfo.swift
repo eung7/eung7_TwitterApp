@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 struct UserInfo : Codable {
     let username : String
     let account : String
+    var profileImage : String
     
     static var currentUserInfo : UserInfo {
         get {
@@ -17,7 +19,7 @@ struct UserInfo : Codable {
             let savedData = UserDefaults.standard.data(forKey: "UserInfo")
             let userInfo = try? decoder.decode(UserInfo.self, from: savedData ?? Data())
             
-            return userInfo ?? UserInfo(username: "Default", account: "Default")
+            return userInfo ?? UserInfo(username: "Default", account: "Default", profileImage: "")
         }
         set {
             let encoder = JSONEncoder()
