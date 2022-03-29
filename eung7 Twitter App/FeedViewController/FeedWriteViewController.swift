@@ -16,6 +16,10 @@ class FeedWriteViewController : UIViewController {
     
     let writeTextView = UITextView()
     
+    var index : Int?
+    
+    var editorMode : EditorMode?
+    
     weak var delegate : FeedWriteDelegate?
     
     let cancelButton = UIBarButtonItem(
@@ -32,6 +36,13 @@ class FeedWriteViewController : UIViewController {
         action: #selector(didTapSaveButton)
     )
     
+    let editBarButtonItem = UIBarButtonItem(
+        title: "수정",
+        style: .done,
+        target: self,
+        action: #selector(didTapEditButton)
+    )
+    
     override func viewDidLoad() {
         super.viewDidLoad()
    
@@ -39,17 +50,37 @@ class FeedWriteViewController : UIViewController {
         
         setupLayout()
         setupNavigationBar()
+        checkOutMode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         writeTextView.becomeFirstResponder()
+        
+    }
+    
+    private func checkOutMode() {
+        switch editorMode {
+        case let .editor(index) :
+            self.index = index
+            navigationItem.rightBarButtonItem = editBarButtonItem
+        default :
+            break
+        }
     }
     
     private func setupNavigationBar() {
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
+    }
+    
+    @objc private func didTapEditButton() {
+        guard let index = index else { return }
+        guard let contents = writeTextView.text else { return }
+        Feed.currentFeeds[index].contents = contents
+        
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func didTapClosedButton() {

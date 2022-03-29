@@ -20,6 +20,7 @@ class FeedDetailViewController : UIViewController {
     let contentsLabel = UILabel()
     let heartButton = UIButton()
     let shareBUtton = UIButton()
+    let modifyButton = UIButton()
 
     let buttonStackView = UIStackView()
     
@@ -40,10 +41,38 @@ class FeedDetailViewController : UIViewController {
         setupLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateContents()
+    }
+    
+    private func updateContents() {
+        contentsLabel.text = Feed.currentFeeds[index].contents
+    }
+    
     @objc func didTapDeleteButton() {
         completion?(index)
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func didTapHeartButton() {
+        if heartButton.isSelected {
+            heartButton.isSelected = false
+            Feed.currentFeeds[index].isHeart = false
+        } else {
+            heartButton.isSelected = true
+            Feed.currentFeeds[index].isHeart = true
+        }
+    }
+    
+    @objc private func didTapModifyButton() {
+        let vc = FeedWriteViewController()
+        vc.editorMode = .editor(index)
+        vc.writeTextView.text = Feed.currentFeeds[index].contents
+
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setupLayout() {
@@ -56,10 +85,11 @@ class FeedDetailViewController : UIViewController {
         
         heartButton.tintColor = .systemMint
         heartButton.isSelected = Feed.currentFeeds[index].isHeart
+        heartButton.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         
         shareBUtton.tintColor = .systemMint
         
-        [ profileImageView, usernameLabel, accountLabel, contentsLabel, buttonStackView ]
+        [ profileImageView, usernameLabel, accountLabel, contentsLabel, buttonStackView, modifyButton ]
             .forEach { view.addSubview($0) }
         
         profileImageView.backgroundColor = .gray
@@ -100,6 +130,18 @@ class FeedDetailViewController : UIViewController {
             $0.top.equalTo(contentsLabel.snp.bottom).offset(16)
             $0.leading.equalToSuperview().inset(100)
             $0.trailing.equalToSuperview().inset(100)
+        }
+        
+        modifyButton.addTarget(self, action: #selector(didTapModifyButton), for: .touchUpInside)
+        modifyButton.setTitle("수정하기", for: .normal)
+        modifyButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        modifyButton.layer.cornerRadius = 10
+        modifyButton.tintColor = .systemMint
+        modifyButton.backgroundColor = .systemMint
+        modifyButton.snp.makeConstraints {
+            $0.top.equalTo(buttonStackView.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
         }
     }
 }
