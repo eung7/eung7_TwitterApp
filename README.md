@@ -6,6 +6,8 @@
   > RxSwift(리팩토링 예정)
   
   > UIKit (No StoryBoard)
+
+> Floaty (https://github.com/kciter/Floaty)
   
 ---
   
