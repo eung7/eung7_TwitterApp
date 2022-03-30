@@ -22,6 +22,8 @@ class TabBarController : UITabBarController {
     }
     
     func setup() {
+        tabBar.tintColor = .systemMint
+        
         self.viewControllers = [
             UINavigationController(rootViewController: feedViewController),
             UINavigationController(rootViewController: profileViewContller)

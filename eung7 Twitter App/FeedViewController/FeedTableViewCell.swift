@@ -21,6 +21,12 @@ class FeedTableViewCell : UITableViewCell {
     let messageButton = UIButton()
     let shareButton = UIButton()
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setupLayout()
+    }
+    
     @objc private func didTapHeartButton() {
         if heartButton.isSelected {
             heartButton.isSelected = false

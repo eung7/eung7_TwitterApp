@@ -40,19 +40,21 @@ class ProfileViewController : UIViewController {
         configuration.filter = .images
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
-        
+
         present(picker, animated: true, completion: nil)
     }
-    
+
     @objc private func didTapProfileImageView() {
         configurationPHPicker()
     }
     
     @objc private func didTapSaveButton() {
+        guard let imageString = profileImage.image?.toPngString() else { return }
+        
         let userInfo = UserInfo(
             username: usernameTextField.text ?? "",
             account: accountTextField.text ?? "",
-            profileImage: profileImage.image?.toPngString() ?? ""
+            profileImage: imageString
         )
         UserInfo.currentUserInfo = userInfo
     }
@@ -83,7 +85,14 @@ class ProfileViewController : UIViewController {
         profileImage.layer.masksToBounds = true
         profileImage.addGestureRecognizer(tapProfileImageView)
         profileImage.isUserInteractionEnabled = true
-        profileImage.image = UserInfo.currentUserInfo.profileImage.toImage()
+        DispatchQueue.global().async {
+            let image = UserInfo.currentUserInfo.profileImage.toImage()
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.profileImage.image = image
+            }
+        }
+    
         profileImage.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)

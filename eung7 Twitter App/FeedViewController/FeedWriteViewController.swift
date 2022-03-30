@@ -57,7 +57,6 @@ class FeedWriteViewController : UIViewController {
         super.viewWillAppear(animated)
         
         writeTextView.becomeFirstResponder()
-        
     }
     
     private func checkOutMode() {

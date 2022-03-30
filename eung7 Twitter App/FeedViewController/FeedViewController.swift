@@ -20,13 +20,14 @@ class FeedViewController: UIViewController {
         
         setupNavigationBar()
         setupLayout()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     private func setupNavigationBar() {
@@ -82,11 +83,13 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         cell.heartButton.isSelected = Feed.currentFeeds[index].isHeart
         cell.usernameLabel.text = UserInfo.currentUserInfo.username
         cell.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
-        cell.profileImageView.image = UserInfo.currentUserInfo.profileImage.toImage()
         
+        DispatchQueue.main.async {
+            let profileImage = UserInfo.currentUserInfo.profileImage.toImage()
+            cell.profileImageView.image = profileImage
+        }
         cell.index = index
-        
-        cell.setupLayout()
+        cell.selectionStyle = .default
         
         return cell
     }
@@ -103,8 +106,6 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         vc.completion = { [weak self] index in
             guard let self = self else { return }
             Feed.currentFeeds.remove(at: index)
-            
-            tableView.reloadData()
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
