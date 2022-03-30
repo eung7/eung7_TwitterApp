@@ -12,29 +12,27 @@ import Floaty
 class FeedViewController: UIViewController {
     
     let tableView = UITableView(frame: .zero)
-    
+    let refresh = UIRefreshControl()
     let floaty = Floaty(size: 50.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupNavigationBar()
         setupLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        DispatchQueue.main.async {
+    @objc private func pullRefresh() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.tableView.reloadData()
+            self.refresh.endRefreshing()
         }
     }
     
-    private func setupNavigationBar() {
-        self.navigationItem.title = "Feed"
-    }
-    
     private func setupLayout() {
+        self.navigationItem.title = "Feed"
+        tableView.refreshControl = refresh
+        tableView.refreshControl?.addTarget(self, action: #selector(pullRefresh), for: .valueChanged)
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "FeedTableViewCell")
@@ -84,10 +82,9 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         cell.usernameLabel.text = UserInfo.currentUserInfo.username
         cell.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
         
-        DispatchQueue.main.async {
-            let profileImage = UserInfo.currentUserInfo.profileImage.toImage()
-            cell.profileImageView.image = profileImage
-        }
+        let profileImage = UserInfo.currentUserInfo.profileImage.toImage()
+        cell.profileImageView.image = profileImage
+        
         cell.index = index
         cell.selectionStyle = .default
         
@@ -98,15 +95,16 @@ extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
         let index = indexPath.row
         
         let vc = FeedDetailViewController()
+        vc.index = index
         vc.contentsLabel.text = Feed.currentFeeds[index].contents
         vc.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
         vc.usernameLabel.text = UserInfo.currentUserInfo.username
-        vc.index = index
         
         vc.completion = { [weak self] index in
             guard let self = self else { return }
             Feed.currentFeeds.remove(at: index)
         }
+    
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -122,7 +120,5 @@ extension FeedViewController : FeedWriteDelegate {
     func sendToText(vc: UIViewController, text: String) {
         let feed = Feed(contents: text, isHeart: false)
         Feed.currentFeeds.insert(feed, at: 0)
-        
-        tableView.reloadData()
     }
 }
