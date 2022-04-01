@@ -10,6 +10,10 @@
 > Floaty (https://github.com/kciter/Floaty)
   
 ---
+ 
+ # Architecture
+ 
+ > MVVM
   
   
 ## 피드 작성
