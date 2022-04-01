@@ -10,8 +10,6 @@ import SnapKit
 
 class FeedTableViewCell : UITableViewCell {
     
-    var index : Int = 0
-    
     let usernameLabel = UILabel()
     let accountLabel = UILabel()
     let contentsLabel = UILabel()
@@ -27,13 +25,19 @@ class FeedTableViewCell : UITableViewCell {
         setupLayout()
     }
     
+    func setup(feed : Feed) {
+        contentsLabel.text = feed.contents
+        accountLabel.text = UserInfo.shared.account
+        usernameLabel.text = UserInfo.shared.username
+    }
+    
     @objc private func didTapHeartButton() {
         if heartButton.isSelected {
             heartButton.isSelected = false
-            Feed.currentFeeds[index].isHeart = false
+//            Feed.currentFeeds[index].isHeart = false
         } else {
             heartButton.isSelected = true
-            Feed.currentFeeds[index].isHeart = true
+//            Feed.currentFeeds[index].isHeart = true
         }
     }
     

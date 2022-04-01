@@ -9,15 +9,13 @@ import UIKit
 import SnapKit
 
 protocol FeedWriteDelegate : AnyObject {
-    func sendToText(vc : UIViewController, text : String)
+    func sendToText(text : String)
 }
 
 class FeedWriteViewController : UIViewController {
     
     let writeTextView = UITextView()
-    
     var index : Int?
-    
     var editorMode : EditorMode?
     
     weak var delegate : FeedWriteDelegate?
@@ -77,7 +75,7 @@ class FeedWriteViewController : UIViewController {
     @objc private func didTapEditButton() {
         guard let index = index else { return }
         guard let contents = writeTextView.text else { return }
-        Feed.currentFeeds[index].contents = contents
+//        Feed.currentFeeds[index].contents = contents
         
         navigationController?.popViewController(animated: true)
     }
@@ -88,7 +86,7 @@ class FeedWriteViewController : UIViewController {
     
     @objc private func didTapSaveButton() {
         guard let text = writeTextView.text else { return }
-        self.delegate?.sendToText(vc: self, text: text)
+        self.delegate?.sendToText(text: text)
         
         navigationController?.popViewController(animated: true)
     }

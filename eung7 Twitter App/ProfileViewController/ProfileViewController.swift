@@ -49,14 +49,14 @@ class ProfileViewController : UIViewController {
     }
     
     @objc private func didTapSaveButton() {
-        guard let imageString = profileImage.image?.toPngString() else { return }
-        
         let userInfo = UserInfo(
             username: usernameTextField.text ?? "",
-            account: accountTextField.text ?? "",
-            profileImage: imageString
+            account: accountTextField.text ?? ""
         )
-        UserInfo.currentUserInfo = userInfo
+        UserInfo.shared = userInfo
+        DispatchQueue.global().async {
+            UserDefaultsManager.saveUserInfo(userInfo: UserInfo.shared)
+        }
     }
     
     @objc private func didChangedTextField(_ textField : UITextField) {
@@ -85,21 +85,13 @@ class ProfileViewController : UIViewController {
         profileImage.layer.masksToBounds = true
         profileImage.addGestureRecognizer(tapProfileImageView)
         profileImage.isUserInteractionEnabled = true
-        DispatchQueue.global().async {
-            let image = UserInfo.currentUserInfo.profileImage.toImage()
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.profileImage.image = image
-            }
-        }
-    
         profileImage.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16)
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.width.height.equalTo(50)
         }
         
-        usernameTextField.text = UserInfo.currentUserInfo.username
+        usernameTextField.text = UserInfo.shared.username
         usernameTextField.font = .systemFont(ofSize: 20, weight: .bold)
         usernameTextField.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -107,7 +99,7 @@ class ProfileViewController : UIViewController {
             $0.trailing.equalToSuperview().inset(16)
         }
         
-        accountTextField.text = UserInfo.currentUserInfo.account
+        accountTextField.text = UserInfo.shared.account
         accountTextField.font = .systemFont(ofSize: 16, weight: .regular)
         accountTextField.snp.makeConstraints {
             $0.top.equalTo(usernameTextField.snp.bottom).offset(8)

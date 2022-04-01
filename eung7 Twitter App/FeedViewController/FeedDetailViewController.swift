@@ -10,8 +10,7 @@ import SnapKit
 
 class FeedDetailViewController : UIViewController {
     
-    var index : Int = 0
-    
+    let feed : Feed
     var completion : ((Int) -> Void)?
     
     let profileImageView = UIImageView()
@@ -23,6 +22,16 @@ class FeedDetailViewController : UIViewController {
     let modifyButton = UIButton()
 
     let buttonStackView = UIStackView()
+    
+    init(feed : Feed) {
+        self.feed = feed
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     lazy var deleteButton : UIBarButtonItem = {
         let rightBarButton = UIBarButtonItem(
@@ -47,30 +56,41 @@ class FeedDetailViewController : UIViewController {
         updateContents()
     }
     
+    func setup(feed : Feed) {
+        contentsLabel.text = feed.contents
+//        accountLabel.text = "@\()"
+//        usernameLabel.text = UserInfo.currentUserInfo.username
+    }
+    
     private func updateContents() {
-        contentsLabel.text = Feed.currentFeeds[index].contents
+//        contentsLabel.text = feed?.contents
     }
     
     @objc func didTapDeleteButton() {
-        completion?(index)
-        
+//        completion?(index)
         navigationController?.popViewController(animated: true)
     }
     
     @objc private func didTapHeartButton() {
+        let vc = FeedViewController()
         if heartButton.isSelected {
             heartButton.isSelected = false
-            Feed.currentFeeds[index].isHeart = false
+            
+            DispatchQueue.global().async {
+                
+            }
         } else {
             heartButton.isSelected = true
-            Feed.currentFeeds[index].isHeart = true
+            DispatchQueue.global().async {
+//                Feed.currentFeeds[self.index].isHeart = true
+            }
         }
     }
     
     @objc private func didTapModifyButton() {
         let vc = FeedWriteViewController()
-        vc.editorMode = .editor(index)
-        vc.writeTextView.text = Feed.currentFeeds[index].contents
+//        vc.editorMode = .editor(index)
+//        vc.writeTextView.text = Feed.currentFeeds[index].contents
 
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -84,7 +104,7 @@ class FeedDetailViewController : UIViewController {
             .forEach { buttonStackView.addArrangedSubview($0) }
         
         heartButton.tintColor = .systemMint
-        heartButton.isSelected = Feed.currentFeeds[index].isHeart
+//        heartButton.isSelected = Feed.currentFeeds[index].isHeart
         heartButton.addTarget(self, action: #selector(didTapHeartButton), for: .touchUpInside)
         
         shareBUtton.tintColor = .systemMint
@@ -95,7 +115,7 @@ class FeedDetailViewController : UIViewController {
         profileImageView.backgroundColor = .gray
         profileImageView.layer.cornerRadius = 25
         profileImageView.layer.masksToBounds = true
-        profileImageView.image = UserInfo.currentUserInfo.profileImage.toImage()
+//        profileImageView.image = UserInfo.currentUserInfo.profileImage.toImage()
         profileImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             $0.leading.equalTo(view.safeAreaLayoutGuide).inset(16)

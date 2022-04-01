@@ -11,22 +11,7 @@ import UIKit
 struct UserInfo : Codable {
     let username : String
     let account : String
-    var profileImage : String
     
-    static var currentUserInfo : UserInfo {
-        get {
-            let decoder = JSONDecoder()
-            let savedData = UserDefaults.standard.data(forKey: "UserInfo")
-            let userInfo = try? decoder.decode(UserInfo.self, from: savedData ?? Data())
-            
-            return userInfo ?? UserInfo(username: "Default", account: "Default", profileImage: "")
-        }
-        set {
-            let encoder = JSONEncoder()
-            if let data = try? encoder.encode(newValue) {
-                let defaults = UserDefaults.standard
-                defaults.set(data, forKey: "UserInfo")
-            }
-        }
-    }
+    static var shared : UserInfo = UserInfo(username: "Default", account: "Default")
 }
+

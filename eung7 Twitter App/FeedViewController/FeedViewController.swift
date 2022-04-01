@@ -12,27 +12,46 @@ import Floaty
 class FeedViewController: UIViewController {
     
     let tableView = UITableView(frame: .zero)
-    let refresh = UIRefreshControl()
-    let floaty = Floaty(size: 50.0)
+    
+    var feeds : [Feed] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLayout()
+        self.navigationItem.title = "Feed"
+        
+        self.feeds = UserDefaultsManager.loadFeed()
+        UserInfo.shared = UserDefaultsManager.loadUserInfo()
+        
+        setupTableView()
+        setupRefreshControl()
+        setupFloaty()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print(UserInfo.shared)
+        print(feeds)
+        
+        tableView.reloadData()
+    }
+    
+    private func setupRefreshControl() {
+        let refresh = UIRefreshControl()
+
+        tableView.refreshControl = refresh
+        tableView.refreshControl?.addTarget(self, action: #selector(pullRefresh), for: .valueChanged)
     }
     
     @objc private func pullRefresh() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.tableView.reloadData()
-            self.refresh.endRefreshing()
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
     
-    private func setupLayout() {
-        self.navigationItem.title = "Feed"
-        tableView.refreshControl = refresh
-        tableView.refreshControl?.addTarget(self, action: #selector(pullRefresh), for: .valueChanged)
-
+    private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(FeedTableViewCell.self, forCellReuseIdentifier: "FeedTableViewCell")
@@ -42,11 +61,11 @@ class FeedViewController: UIViewController {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        setupFloaty()
     }
     
     private func setupFloaty() {
+        let floaty = Floaty(size: 50.0)
+        
         view.addSubview(floaty)
         floaty.paddingY = 100.0
         floaty.sticky = true
@@ -66,59 +85,50 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Feed.currentFeeds.count
+        return feeds.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as? FeedTableViewCell else {
+            return UITableViewCell() }
         let index = indexPath.row
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "FeedTableViewCell",
-            for: indexPath)
-                as? FeedTableViewCell else {
-            return UITableViewCell()
-        }
-        cell.contentsLabel.text = Feed.currentFeeds[index].contents
-        cell.heartButton.isSelected = Feed.currentFeeds[index].isHeart
-        cell.usernameLabel.text = UserInfo.currentUserInfo.username
-        cell.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
+        let feed = feeds[index]
         
-        let profileImage = UserInfo.currentUserInfo.profileImage.toImage()
-        cell.profileImageView.image = profileImage
-        
-        cell.index = index
-        cell.selectionStyle = .default
+        cell.setup(feed: feed)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = indexPath.row
+        let feed = feeds[index]
         
-        let vc = FeedDetailViewController()
-        vc.index = index
-        vc.contentsLabel.text = Feed.currentFeeds[index].contents
-        vc.accountLabel.text = "@\(UserInfo.currentUserInfo.account)"
-        vc.usernameLabel.text = UserInfo.currentUserInfo.username
-        
+        let vc = FeedDetailViewController(feed: feed)
         vc.completion = { [weak self] index in
             guard let self = self else { return }
-            Feed.currentFeeds.remove(at: index)
+            let feeds = self.feeds.remove(at: index)
+            DispatchQueue.global().async {
+                UserDefaultsManager.saveFeed(feed: feed)
+            }
         }
-    
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            Feed.currentFeeds.remove(at: indexPath.row)
+            let feeds = feeds.remove(at: indexPath.row)
+            DispatchQueue.global().async {
+                UserDefaultsManager.saveFeed(feed: feeds)
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
 
 extension FeedViewController : FeedWriteDelegate {
-    func sendToText(vc: UIViewController, text: String) {
+    func sendToText(text: String) {
         let feed = Feed(contents: text, isHeart: false)
-        Feed.currentFeeds.insert(feed, at: 0)
+        UserDefaultsManager.saveFeed(feed: feed)
+        feeds.insert(feed, at: 0)
     }
 }
