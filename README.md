@@ -13,7 +13,7 @@
  
  # Architecture
  
- > MVVM
+ > MVVM (리팩토링 예정)
   
   
 ## 피드 작성
