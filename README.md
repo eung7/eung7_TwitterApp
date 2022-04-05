@@ -16,7 +16,7 @@
  > MVVM (리팩토링 예정)
   
   
-## 피드 작성
+<!-- ## 피드 작성
   
 ![글쓰기2](https://user-images.githubusercontent.com/97531269/160947716-957b2884-457c-4585-a4f4-dcdbd0310b5f.gif)
   
@@ -32,5 +32,5 @@
 ## 피드 수정 및 좋아요 버튼
 
 ![Final](https://user-images.githubusercontent.com/97531269/160948195-93ef01cc-48d4-446b-a1b7-f064f3909354.gif)
-
+ -->
 </div>
